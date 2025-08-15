@@ -1,0 +1,23 @@
+// Navbar collapse transitions
+.navbar-collapse {
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar-collapse.collapse:not(.show) {
+  display: none;
+}
+
+.navbar-collapse.show {
+  display: block;
+}
+
+// Ensure navbar toggler works on all screen sizes
+@media (max-width: 991.98px) {
+  .navbar-collapse.collapse {
+    display: none;
+  }
+  
+  .navbar-collapse.show {
+    display: block;
+  }
+}

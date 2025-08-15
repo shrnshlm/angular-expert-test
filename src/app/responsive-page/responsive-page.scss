@@ -1,0 +1,183 @@
+// Responsive Page Styles
+
+.min-vh-50 {
+  min-height: 50vh;
+}
+
+// Hero Section
+.hero-section {
+  .hero-placeholder {
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  }
+}
+
+// Stats Section
+.stats-section {
+  .stat-item {
+    padding: 1rem;
+    
+    .stat-value {
+      line-height: 1;
+    }
+  }
+}
+
+// Features Section
+.feature-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  }
+  
+  .feature-icon {
+    line-height: 1;
+  }
+}
+
+// Preview Section
+.preview-container {
+  .mini-card {
+    transition: background-color 0.2s ease;
+    
+    &:hover {
+      background-color: #e9ecef !important;
+    }
+  }
+}
+
+// Testimonials Section
+.testimonial-card {
+  transition: transform 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+  }
+  
+  .stars {
+    line-height: 1;
+  }
+}
+
+// Technology Section
+.tech-item {
+  .tech-icon {
+    line-height: 1;
+  }
+}
+
+// Responsive Breakpoints
+@media (max-width: 767.98px) {
+  // Mobile styles
+  .hero-section {
+    .display-4 {
+      font-size: 2rem;
+    }
+    
+    .lead {
+      font-size: 1rem;
+    }
+  }
+  
+  .stats-section {
+    .display-4 {
+      font-size: 2rem;
+    }
+  }
+  
+  .features-section,
+  .preview-section,
+  .testimonials-section {
+    .display-5,
+    .display-6 {
+      font-size: 1.75rem;
+    }
+  }
+  
+  .tech-section {
+    .tech-icon {
+      font-size: 2rem;
+    }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  // Tablet styles
+  .hero-section {
+    .display-4 {
+      font-size: 2.5rem;
+    }
+  }
+  
+  .feature-card {
+    height: 100%;
+  }
+}
+
+@media (min-width: 992px) {
+  // Desktop styles
+  .hero-section {
+    .hero-placeholder {
+      min-height: 350px;
+    }
+  }
+  
+  .features-section {
+    .feature-card {
+      .card-body {
+        padding: 2rem;
+      }
+    }
+  }
+  
+  .testimonial-card {
+    .card-body {
+      padding: 2rem;
+    }
+  }
+}
+
+// Accessibility improvements
+@media (prefers-reduced-motion: reduce) {
+  .feature-card,
+  .testimonial-card,
+  .mini-card {
+    transition: none;
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .card {
+    border: 2px solid #000 !important;
+  }
+  
+  .btn {
+    border: 2px solid currentColor;
+  }
+}
+
+// Print styles
+@media print {
+  .cta-section,
+  .btn {
+    display: none !important;
+  }
+  
+  .hero-section,
+  .stats-section,
+  .tech-section {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .text-white {
+    color: black !important;
+  }
+}

@@ -1,0 +1,246 @@
+<!-- Hero Section -->
+<section class="hero-section bg-primary text-white py-5">
+  <div class="container">
+    <div class="row align-items-center min-vh-50">
+      <div class="col-lg-6">
+        <h1 class="display-4 fw-bold mb-4">Angular Expert Test Application</h1>
+        <p class="lead mb-4">
+          A comprehensive demonstration of modern Angular development practices, 
+          featuring responsive design, accessibility, and real-time data integration.
+        </p>
+        <div class="d-flex flex-column flex-sm-row gap-3">
+          <button class="btn btn-light btn-lg px-4" tabindex="0">
+            <i aria-hidden="true">👥</i> View Users
+          </button>
+          <button class="btn btn-outline-light btn-lg px-4" tabindex="0">
+            <i aria-hidden="true">📋</i> Browse Todos
+          </button>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="hero-image-container text-center mt-4 mt-lg-0">
+          <div class="hero-placeholder bg-light rounded-4 p-5 text-primary">
+            <div class="display-1 mb-3">💻</div>
+            <h4>Modern Web Application</h4>
+            <p class="text-muted">Built with Angular 20 & Bootstrap 5</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats-section py-5 bg-light">
+  <div class="container">
+    <div class="row text-center">
+      @for (stat of stats(); track stat.label) {
+        <div class="col-6 col-lg-3 mb-4 mb-lg-0">
+          <div class="stat-item">
+            <div class="stat-value display-4 fw-bold text-primary">{{ stat.value }}</div>
+            <div class="stat-label text-muted">{{ stat.label }}</div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center mb-5">
+        <h2 class="display-5 fw-bold">Key Features</h2>
+        <p class="lead text-muted">Discover what makes this application special</p>
+      </div>
+    </div>
+    <div class="row g-4">
+      @for (feature of features(); track feature.title) {
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 border-0 shadow-sm feature-card">
+            <div class="card-body p-4 text-center">
+              <div class="feature-icon display-4 mb-3">{{ feature.icon }}</div>
+              <h5 class="card-title fw-bold">{{ feature.title }}</h5>
+              <p class="card-text text-muted">{{ feature.description }}</p>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Application Preview Section -->
+<section class="preview-section py-5 bg-light">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <h2 class="display-6 fw-bold mb-4">Application Features</h2>
+        <div class="feature-list">
+          <div class="feature-item d-flex align-items-start mb-3">
+            <div class="feature-check text-success me-3 fs-4">✓</div>
+            <div>
+              <h6 class="fw-bold mb-1">Users Management</h6>
+              <p class="text-muted mb-0">Interactive table with modal todos display</p>
+            </div>
+          </div>
+          <div class="feature-item d-flex align-items-start mb-3">
+            <div class="feature-check text-success me-3 fs-4">✓</div>
+            <div>
+              <h6 class="fw-bold mb-1">Smart Search</h6>
+              <p class="text-muted mb-0">Debounced input with URL query persistence</p>
+            </div>
+          </div>
+          <div class="feature-item d-flex align-items-start mb-3">
+            <div class="feature-check text-success me-3 fs-4">✓</div>
+            <div>
+              <h6 class="fw-bold mb-1">Live Currency</h6>
+              <p class="text-muted mb-0">Real-time exchange rates with error handling</p>
+            </div>
+          </div>
+          <div class="feature-item d-flex align-items-start mb-3">
+            <div class="feature-check text-success me-3 fs-4">✓</div>
+            <div>
+              <h6 class="fw-bold mb-1">HTTP Interceptor</h6>
+              <p class="text-muted mb-0">Request ID validation and error management</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="preview-container mt-4 mt-lg-0">
+          <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+              <h6 class="mb-0">Application Dashboard</h6>
+            </div>
+            <div class="card-body p-4">
+              <div class="row g-3">
+                <div class="col-6">
+                  <div class="mini-card bg-light p-3 rounded text-center">
+                    <div class="text-primary fs-3">👥</div>
+                    <small>Users</small>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="mini-card bg-light p-3 rounded text-center">
+                    <div class="text-success fs-3">✓</div>
+                    <small>Todos</small>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="mini-card bg-light p-3 rounded text-center">
+                    <div class="text-warning fs-3">💱</div>
+                    <small>Currency</small>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="mini-card bg-light p-3 rounded text-center">
+                    <div class="text-info fs-3">📱</div>
+                    <small>Responsive</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials-section py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center mb-5">
+        <h2 class="display-6 fw-bold">Developer Testimonials</h2>
+        <p class="lead text-muted">What developers say about this implementation</p>
+      </div>
+    </div>
+    <div class="row g-4">
+      @for (testimonial of testimonials(); track testimonial.name) {
+        <div class="col-lg-4">
+          <div class="card h-100 border-0 shadow-sm testimonial-card">
+            <div class="card-body p-4">
+              <div class="stars mb-3">
+                @for (star of getStarArray(testimonial.rating); track $index) {
+                  <span class="text-warning fs-5">★</span>
+                }
+              </div>
+              <p class="card-text mb-4">"{{ testimonial.content }}"</p>
+              <div class="testimonial-author">
+                <h6 class="mb-0 fw-bold">{{ testimonial.name }}</h6>
+                <small class="text-muted">{{ testimonial.role }}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Technology Stack Section -->
+<section class="tech-section py-5 bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center mb-5">
+        <h2 class="display-6 fw-bold">Technology Stack</h2>
+        <p class="lead text-muted">Built with modern web technologies</p>
+      </div>
+    </div>
+    <div class="row g-4 text-center">
+      <div class="col-6 col-md-3">
+        <div class="tech-item">
+          <div class="tech-icon display-4 text-danger mb-3">🅰️</div>
+          <h6 class="fw-bold">Angular 20</h6>
+          <small class="text-muted">Latest Framework</small>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="tech-item">
+          <div class="tech-icon display-4 text-primary mb-3">🎨</div>
+          <h6 class="fw-bold">Bootstrap 5</h6>
+          <small class="text-muted">CSS Framework</small>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="tech-item">
+          <div class="tech-icon display-4 text-warning mb-3">🔧</div>
+          <h6 class="fw-bold">TypeScript</h6>
+          <small class="text-muted">Type Safety</small>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="tech-item">
+          <div class="tech-icon display-4 text-success mb-3">♿</div>
+          <h6 class="fw-bold">WCAG 2.1</h6>
+          <small class="text-muted">Accessibility</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section py-5 bg-primary text-white">
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <h2 class="display-6 fw-bold mb-4">Ready to Explore?</h2>
+        <p class="lead mb-4">
+          Navigate through the application tabs to experience all the features firsthand.
+        </p>
+        <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+          <a href="/users" class="btn btn-light btn-lg px-4" role="button" tabindex="0">
+            Start with Users
+          </a>
+          <a href="/currency" class="btn btn-outline-light btn-lg px-4" role="button" tabindex="0">
+            Check Currency Rates
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,48 @@
+<div class="container-fluid">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+    <div class="container">
+      <a class="navbar-brand" href="#" (click)="closeNavbar()">Angular Expert Test</a>
+      <button class="navbar-toggler" type="button" 
+              (click)="toggleNavbar()"
+              [attr.aria-controls]="'navbarNav'" 
+              [attr.aria-expanded]="!navbarCollapsed()" 
+              aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-collapse" 
+           [class.collapse]="navbarCollapsed()"
+           [class.show]="!navbarCollapsed()" 
+           id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/users" routerLinkActive="active" 
+               (click)="closeNavbar()"
+               [attr.aria-current]="'page'">Users Table</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/todos" routerLinkActive="active" 
+               (click)="closeNavbar()"
+               [attr.aria-current]="'page'">Todos by User</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/currency" routerLinkActive="active" 
+               (click)="closeNavbar()"
+               [attr.aria-current]="'page'">Currency Exchange</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/responsive" routerLinkActive="active" 
+               (click)="closeNavbar()"
+               [attr.aria-current]="'page'">Responsive Page</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="error-message" *ngIf="errorMessage" role="alert" aria-live="polite">
+      <strong>Error:</strong> {{errorMessage}}
+    </div>
+    <router-outlet />
+  </div>
+</div>

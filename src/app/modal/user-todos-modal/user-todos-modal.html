@@ -1,0 +1,78 @@
+<div class="modal-backdrop" 
+     (click)="onBackdropClick($event)" 
+     tabindex="-1"
+     role="dialog"
+     aria-modal="true"
+     [attr.aria-labelledby]="'modal-title'">
+  
+  <div class="modal-content" 
+       #modalContent 
+       tabindex="0"
+       role="document">
+    
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-title">
+        Todos for {{ user.name }}
+      </h4>
+      <button type="button" 
+              #closeButton
+              class="btn-close" 
+              aria-label="Close modal"
+              (click)="onClose()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    
+    <div class="modal-body">
+      @if (loading()) {
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border" role="status" aria-label="Loading todos">
+            <span class="visually-hidden">Loading todos...</span>
+          </div>
+        </div>
+      } @else {
+        <div class="todos-list" role="list" [attr.aria-label]="'Todo items for ' + user.name">
+          @for (todo of todos(); track trackByTodoId($index, todo)) {
+            <div class="todo-item d-flex align-items-center p-3 border rounded mb-2" 
+                 role="listitem"
+                 tabindex="0"
+                 [attr.aria-label]="'Todo: ' + todo.title + ', Status: ' + (todo.completed ? 'Completed' : 'Pending')"
+                 (keydown)="onTodoKeyDown($event, todo)">
+              <div class="todo-status me-3" aria-hidden="true">
+                @if (todo.completed) {
+                  <span class="completed-todo">
+                    <i class="text-success">✓</i>
+                  </span>
+                } @else {
+                  <span class="pending-todo">
+                    <i class="text-danger">✗</i>
+                  </span>
+                }
+              </div>
+              <div class="todo-content flex-grow-1">
+                <p class="mb-0" [class]="todo.completed ? 'completed-todo fw-bold' : 'pending-todo fw-bold'">
+                  {{ todo.title }}
+                </p>
+                <small class="text-muted">
+                  Status: {{ todo.completed ? 'Completed' : 'Pending' }}
+                </small>
+              </div>
+            </div>
+          }
+        </div>
+        
+        @if (todos().length === 0) {
+          <div class="text-center text-muted">
+            No todos found for this user.
+          </div>
+        }
+      }
+    </div>
+    
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="onClose()">
+        Close
+      </button>
+    </div>
+  </div>
+</div>

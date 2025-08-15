@@ -1,0 +1,52 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+/* Accessibility and global styles */
+.completed-todo {
+  color: #28a745 !important;
+}
+
+.pending-todo {
+  color: #dc3545 !important;
+}
+
+.exchange-rate-up {
+  color: #28a745;
+}
+
+.exchange-rate-down {
+  color: #dc3545;
+}
+
+.exchange-rate-neutral {
+  color: #6c757d;
+}
+
+.error-message {
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  color: #721c24;
+  padding: 0.75rem;
+  border-radius: 0.25rem;
+  margin: 1rem 0;
+}
+
+/* Focus indicators for accessibility */
+.btn:focus,
+.form-control:focus,
+.modal-content:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+/* Screen reader only content */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
