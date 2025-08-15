@@ -1,183 +1,651 @@
-// Responsive Page Styles
+// Financial Dashboard Styles
 
-.min-vh-50 {
-  min-height: 50vh;
+:host {
+  font-family: 'Arial', 'Helvetica', sans-serif;
 }
 
-// Hero Section
-.hero-section {
-  .hero-placeholder {
-    min-height: 300px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-  }
-}
+// Color Variables
+$primary-teal: #17a2b8;
+$success-green: #20b2aa;
+$warning-orange: #ffc107;
+$danger-red: #dc3545;
+$light-gray: #f8f9fa;
+$medium-gray: #e9ecef;
+$dark-gray: #6c757d;
+$text-gray: #495057;
+$white: #ffffff;
 
-// Stats Section
-.stats-section {
-  .stat-item {
-    padding: 1rem;
+.financial-dashboard {
+  background-color: $light-gray;
+  min-height: 100vh;
+  font-family: inherit;
+  direction: rtl;
+
+  // Header Progress Stages (Desktop)
+  .stages-header-desktop {
+    background: $white;
+    padding: 20px 0;
+    border: 1px solid $medium-gray;
+    border-left: 3px solid $success-green;
+    border-right: 3px solid $success-green;
+    border-bottom: 5px solid $medium-gray;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    margin-bottom: 0;
     
-    .stat-value {
-      line-height: 1;
+    .stages-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 0 40px;
+      
+      .stage-item {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        position: relative;
+        
+        .stage-content.desktop-layout {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          flex: 1;
+          gap: 12px;
+          
+          .stage-title {
+            font-size: 0.85rem;
+            color: $text-gray;
+            font-weight: bold;
+            order: 2;
+            white-space: nowrap;
+          }
+          
+          .stage-icon-wrapper {
+            position: relative;
+            order: 1;
+            
+            .stage-icon {
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 1.2rem;
+              font-weight: bold;
+              border: 2px solid;
+              
+              &.stage-completed {
+                background-color: $white;
+                border-color: $success-green;
+                color: $success-green;
+              }
+              
+              &.stage-active {
+                background-color: $primary-teal;
+                border-color: $primary-teal;
+                color: $white;
+              }
+              
+              &.stage-pending {
+                background-color: $white;
+                border-color: $medium-gray;
+                color: $dark-gray;
+              }
+            }
+          }
+        }
+        
+        .stage-connector {
+          position: absolute;
+          top: 50%;
+          left: -25%;
+          right: -25%;
+          height: 1px;
+          background-color: $light-gray;
+          z-index: -1;
+          transform: translateY(-50%);
+          
+          &.completed {
+            background-color: $light-gray;
+          }
+        }
+      }
     }
   }
-}
 
-// Features Section
-.feature-card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
-  }
-  
-  .feature-icon {
-    line-height: 1;
-  }
-}
-
-// Preview Section
-.preview-container {
-  .mini-card {
-    transition: background-color 0.2s ease;
+  // Header Progress Stages (Mobile)
+  .stages-header-mobile {
+    background: $white;
+    padding: 15px 0;
+    border: 1px solid $medium-gray;
+    border-left: 3px solid $success-green;
+    border-right: 3px solid $success-green;
+    border-bottom: 5px solid $medium-gray;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    margin-bottom: 0;
     
-    &:hover {
-      background-color: #e9ecef !important;
+    .stages-container-mobile {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      
+      .stage-item-mobile {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        position: relative;
+        
+        .stage-content.mobile-layout {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          flex: 1;
+          gap: 8px;
+          
+          .stage-icon-wrapper {
+            position: relative;
+            
+            .stage-icon {
+              width: 35px;
+              height: 35px;
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 1rem;
+              font-weight: bold;
+              border: 2px solid;
+              
+              &.stage-completed {
+                background-color: $success-green;
+                border-color: $success-green;
+                color: $white;
+              }
+              
+              &.stage-active {
+                background-color: $primary-teal;
+                border-color: $primary-teal;
+                color: $white;
+              }
+              
+              &.stage-pending {
+                background-color: $white;
+                border-color: $medium-gray;
+                color: $dark-gray;
+              }
+            }
+          }
+          
+          .stage-title {
+            font-size: 0.7rem;
+            color: $text-gray;
+            font-weight: bold;
+            line-height: 1.2;
+            white-space: nowrap;
+          }
+        }
+        
+        .stage-connector-mobile {
+          position: absolute;
+          top: 17px;
+          left: -25%;
+          right: -25%;
+          height: 1px;
+          background-color: $light-gray;
+          z-index: -1;
+          
+          &.completed {
+            background-color: $light-gray;
+          }
+        }
+      }
     }
   }
-}
 
-// Testimonials Section
-.testimonial-card {
-  transition: transform 0.2s ease;
-  
-  &:hover {
-    transform: translateY(-2px);
+  // Section Title Area
+  .section-title-area {
+    background-color: $light-gray;
+    padding: 30px 0 10px 0;
+    
+    .title-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      position: relative;
+      
+      .section-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: $success-green;
+        margin: 0;
+        padding: 0;
+      }
+      
+      .yellow-label {
+        background-color: #FFFFEA;
+        color: #333;
+        padding: 8px 16px;
+        border-radius: 4px;
+        border: 1px solid $medium-gray;
+        font-size: 0.75rem;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        position: absolute;
+        left: 7px;
+        
+        .clock-icon {
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+
+  // Mobile Tab Navigation
+  .mobile-tab-nav {
+    background: $white;
+    border-bottom: 1px solid $medium-gray;
+    
+    .tab-item {
+      padding: 10px 5px;
+      cursor: pointer;
+      
+      &.active {
+        .tab-icon {
+          color: $primary-teal;
+        }
+        small {
+          color: $primary-teal;
+          font-weight: 600;
+        }
+      }
+      
+      .tab-icon {
+        font-size: 1.1rem;
+        margin-bottom: 4px;
+        color: $dark-gray;
+        display: block;
+      }
+      
+      small {
+        display: block;
+        font-size: 0.7rem;
+        color: $dark-gray;
+        line-height: 1.2;
+      }
+    }
+  }
+
+  // Desktop Balance Card
+  .desktop-balance-card {
+    border-radius: 8px;
+    margin: 40px;
+    margin-top: 0;
+    margin-bottom: 50px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid $medium-gray;
+    overflow: hidden;
+    
+    .balance-content {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 20px;
+        bottom: 20px;
+        width: 2px;
+        background: linear-gradient(to bottom, $success-green 50%, $white 50%);
+        z-index: 1;
+        transform: translateX(-50%);
+      }
+    }
+    
+    .balance-top-section {
+      background: $white;
+      color: $text-gray;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      
+      .balance-amount {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 4px;
+        line-height: 1;
+        color: $text-gray;
+      }
+      
+      .balance-label {
+        font-size: 0.9rem;
+        margin-bottom: 2px;
+        color: $text-gray;
+        font-weight: bold;
+      }
+      
+      .balance-sublabel {
+        font-size: 0.8rem;
+        color: $dark-gray;
+        font-weight: bold;
+      }
+      
+      .balance-details {
+        .detail-row {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 8px;
+          font-size: 0.85rem;
+          
+          .detail-label {
+            font-weight: bold;
+            margin-left: 16px;
+            
+            &:contains('+') {
+              color: $success-green;
+            }
+          }
+          
+          .detail-value {
+            color: $text-gray;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+    
+    .balance-bottom-section {
+      background: $success-green;
+      color: $white;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      
+      .total-amount {
+        font-size: 1.75rem;
+        font-weight: bold;
+        line-height: 1;
+      }
+      
+      .total-label {
+        font-size: 0.9rem;
+        opacity: 0.95;
+        font-weight: bold;
+      }
+    }
+  }
+
+  // Mobile Transactions
+  .mobile-transactions {
+    margin-bottom: 16px;
+    
+    .mobile-transaction-item {
+      background: $white;
+      margin-bottom: 8px;
+      border-radius: 8px;
+      padding: 14px 16px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      
+      .transaction-left {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        
+        .transaction-icon {
+          margin-left: 12px;
+          
+          .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            
+            &.status-completed {
+              background-color: $success-green;
+            }
+            
+            &.status-pending {
+              background-color: $warning-orange;
+            }
+            
+            &.status-failed {
+              background-color: $danger-red;
+            }
+          }
+        }
+        
+        .transaction-info {
+          .transaction-date {
+            font-size: 0.75rem;
+            color: $dark-gray;
+            margin-bottom: 2px;
+          }
+          
+          .transaction-desc {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: $text-gray;
+            margin-bottom: 2px;
+          }
+          
+          .transaction-reference {
+            font-size: 0.75rem;
+            color: $dark-gray;
+            font-weight: bold;
+          }
+        }
+      }
+      
+      .transaction-right {
+        text-align: left;
+        
+        .transaction-amount {
+          font-weight: bold;
+          font-size: 1rem;
+          margin-bottom: 4px;
+          
+          &.positive {
+            color: $success-green;
+          }
+          
+          &.negative {
+            color: $text-gray;
+          }
+        }
+        
+        .status-badge {
+          background-color: $success-green;
+          color: $white;
+          padding: 2px 8px;
+          border-radius: 12px;
+          font-size: 0.7rem;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  // Mobile Summary Card
+  .mobile-summary {
+    background: $primary-teal;
+    border-radius: 8px;
+    color: $white;
+    box-shadow: 0 2px 8px rgba(23, 162, 184, 0.3);
+    
+    .summary-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 20px;
+      
+      .summary-left {
+        .summary-text {
+          font-size: 0.9rem;
+          margin-bottom: 2px;
+          opacity: 0.95;
+        }
+        
+        .summary-subtext {
+          font-size: 0.8rem;
+          opacity: 0.8;
+        }
+      }
+      
+      .summary-right {
+        .summary-amount {
+          font-size: 1.75rem;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  // Status Classes
+  .status-completed {
+    background-color: $success-green !important;
   }
   
-  .stars {
-    line-height: 1;
+  .status-pending {
+    background-color: $warning-orange !important;
   }
-}
-
-// Technology Section
-.tech-item {
-  .tech-icon {
-    line-height: 1;
+  
+  .status-failed {
+    background-color: $danger-red !important;
   }
 }
 
 // Responsive Breakpoints
 @media (max-width: 767.98px) {
-  // Mobile styles
-  .hero-section {
-    .display-4 {
-      font-size: 2rem;
+  .financial-dashboard {
+    .stages-header {
+      display: none !important;
     }
     
-    .lead {
-      font-size: 1rem;
+    .desktop-balance-card {
+      .balance-left {
+        .balance-amount {
+          font-size: 2rem;
+        }
+      }
     }
-  }
-  
-  .stats-section {
-    .display-4 {
-      font-size: 2rem;
-    }
-  }
-  
-  .features-section,
-  .preview-section,
-  .testimonials-section {
-    .display-5,
-    .display-6 {
-      font-size: 1.75rem;
-    }
-  }
-  
-  .tech-section {
-    .tech-icon {
-      font-size: 2rem;
+    
+    .mobile-summary {
+      .summary-content {
+        .summary-right {
+          .summary-amount {
+            font-size: 1.5rem;
+          }
+        }
+      }
     }
   }
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
-  // Tablet styles
-  .hero-section {
-    .display-4 {
-      font-size: 2.5rem;
+  .financial-dashboard {
+    .stages-header {
+      .stages-container {
+        .stage-item {
+          .stage-content {
+            .stage-title {
+              font-size: 0.75rem;
+            }
+            
+            .stage-icon-wrapper {
+              .stage-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+              }
+            }
+          }
+        }
+      }
     }
-  }
-  
-  .feature-card {
-    height: 100%;
+    
+    .desktop-balance-card {
+      .balance-content {
+        flex-direction: column;
+      }
+      
+      .balance-left,
+      .balance-right {
+        border-radius: 8px;
+      }
+    }
   }
 }
 
 @media (min-width: 992px) {
-  // Desktop styles
-  .hero-section {
-    .hero-placeholder {
-      min-height: 350px;
-    }
-  }
-  
-  .features-section {
-    .feature-card {
-      .card-body {
-        padding: 2rem;
+  .financial-dashboard {
+    .desktop-balance-card {
+      .balance-left {
+        .balance-amount {
+          font-size: 3rem;
+        }
       }
     }
   }
-  
-  .testimonial-card {
-    .card-body {
-      padding: 2rem;
+}
+
+// RTL Support adjustments
+.balance-details {
+  .detail-row {
+    .detail-label {
+      margin-right: 16px;
+      margin-left: 0;
     }
+  }
+}
+
+.transaction-left {
+  .transaction-icon {
+    margin-right: 12px;
+    margin-left: 0;
   }
 }
 
 // Accessibility improvements
 @media (prefers-reduced-motion: reduce) {
-  .feature-card,
-  .testimonial-card,
-  .mini-card {
-    transition: none;
+  .balance-actions button,
+  .mobile-transaction-item {
+    transition: none !important;
   }
 }
 
 // High contrast mode
 @media (prefers-contrast: high) {
-  .card {
-    border: 2px solid #000 !important;
-  }
-  
-  .btn {
-    border: 2px solid currentColor;
-  }
-}
-
-// Print styles
-@media print {
-  .cta-section,
-  .btn {
-    display: none !important;
-  }
-  
-  .hero-section,
-  .stats-section,
-  .tech-section {
-    background: white !important;
-    color: black !important;
-  }
-  
-  .text-white {
-    color: black !important;
+  .financial-dashboard {
+    .desktop-balance-card,
+    .mobile-summary {
+      border: 2px solid #000;
+    }
+    
+    .mobile-transaction-item {
+      border: 1px solid #000;
+    }
+    
+    .status-badge {
+      border: 1px solid #000;
+    }
   }
 }

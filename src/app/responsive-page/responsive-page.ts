@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Transaction, Stage } from '../models';
 
 @Component({
   selector: 'app-responsive-page',
@@ -8,68 +9,85 @@ import { CommonModule } from '@angular/common';
   styleUrl: './responsive-page.scss'
 })
 export class ResponsivePageComponent {
-  features = signal([
+  currentBalance = signal(-174.00);
+  totalBalance = signal(-348.00);
+
+  stages = signal<Stage[]>([
     {
-      icon: '🚀',
-      title: 'Fast Performance',
-      description: 'Built with Angular 20 and optimized for speed and efficiency.'
+      id: '1',
+      title: 'סוג כרטיס, מוצא ויעד',
+      icon: '✓',
+      status: 'completed'
     },
     {
-      icon: '📱',
-      title: 'Mobile Responsive',
-      description: 'Perfectly adapted for all screen sizes and devices.'
+      id: '2',
+      title: 'נוסעים',
+      icon: '✓',
+      status: 'completed'
     },
     {
-      icon: '🎨',
-      title: 'Modern Design',
-      description: 'Clean, modern interface with Bootstrap components.'
+      id: '3',
+      title: 'מועד וקו',
+      icon: '✓',
+      status: 'completed'
     },
     {
-      icon: '♿',
-      title: 'Accessible',
-      description: 'WCAG compliant with keyboard navigation and screen reader support.'
-    },
-    {
-      icon: '🔒',
-      title: 'Secure',
-      description: 'Built with security best practices and request validation.'
-    },
-    {
-      icon: '⚡',
-      title: 'Real-time Updates',
-      description: 'Live data polling and real-time currency exchange rates.'
+      id: '4',
+      title: 'סיכום ותשלום',
+      icon: '4',
+      status: 'active'
     }
   ]);
 
-  testimonials = signal([
+  transactions = signal<Transaction[]>([
     {
-      name: 'John Doe',
-      role: 'Frontend Developer',
-      content: 'This Angular application demonstrates excellent architecture and user experience design.',
-      rating: 5
+      id: '1',
+      date: '25/06/2022',
+      description: 'העברה בנקאית',
+      reference: 'משכנתא 1',
+      amount: 150.00,
+      status: 'completed',
+      type: 'credit'
     },
     {
-      name: 'Jane Smith',
-      role: 'UI/UX Designer',
-      content: 'The responsive design and accessibility features are outstanding.',
-      rating: 5
+      id: '2',
+      date: '17/08',
+      description: 'העברה בנקאית',
+      reference: 'משכנתא 1',
+      amount: -75.00,
+      status: 'pending',
+      type: 'debit'
     },
     {
-      name: 'Mike Johnson',
-      role: 'Full Stack Developer',
-      content: 'Clean code structure with great error handling and user feedback.',
-      rating: 5
+      id: '3',
+      date: '26/05/2022',
+      description: 'תשלום',
+      reference: 'משכנתא 1',
+      amount: 100.00,
+      status: 'completed',
+      type: 'credit'
+    },
+    {
+      id: '4',
+      date: '17/05',
+      description: 'הלוואה',
+      reference: 'משכנתא 1',
+      amount: -120.00,
+      status: 'completed',
+      type: 'debit'
     }
   ]);
 
-  stats = signal([
-    { value: '4', label: 'Main Features' },
-    { value: '15s', label: 'Auto Refresh' },
-    { value: '100%', label: 'Responsive' },
-    { value: 'A+', label: 'Accessibility' }
-  ]);
+  formatAmount(amount: number): string {
+    return amount.toFixed(2);
+  }
 
-  getStarArray(rating: number): number[] {
-    return Array(rating).fill(0);
+  getStatusClass(status: string): string {
+    switch(status) {
+      case 'completed': return 'status-completed';
+      case 'pending': return 'status-pending';
+      case 'failed': return 'status-failed';
+      default: return '';
+    }
   }
 }
