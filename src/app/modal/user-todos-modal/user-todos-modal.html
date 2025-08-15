@@ -24,49 +24,15 @@
     </div>
     
     <div class="modal-body">
-      @if (loading()) {
-        <div class="d-flex justify-content-center">
-          <div class="spinner-border" role="status" aria-label="Loading todos">
-            <span class="visually-hidden">Loading todos...</span>
-          </div>
-        </div>
-      } @else {
-        <div class="todos-list" role="list" [attr.aria-label]="'Todo items for ' + user.name">
-          @for (todo of todos(); track trackByTodoId($index, todo)) {
-            <div class="todo-item d-flex align-items-center p-3 border rounded mb-2" 
-                 role="listitem"
-                 tabindex="0"
-                 [attr.aria-label]="'Todo: ' + todo.title + ', Status: ' + (todo.completed ? 'Completed' : 'Pending')"
-                 (keydown)="onTodoKeyDown($event, todo)">
-              <div class="todo-status me-3" aria-hidden="true">
-                @if (todo.completed) {
-                  <span class="completed-todo">
-                    <i class="text-success">✓</i>
-                  </span>
-                } @else {
-                  <span class="pending-todo">
-                    <i class="text-danger">✗</i>
-                  </span>
-                }
-              </div>
-              <div class="todo-content flex-grow-1">
-                <p class="mb-0" [class]="todo.completed ? 'completed-todo fw-bold' : 'pending-todo fw-bold'">
-                  {{ todo.title }}
-                </p>
-                <small class="text-muted">
-                  Status: {{ todo.completed ? 'Completed' : 'Pending' }}
-                </small>
-              </div>
-            </div>
-          }
-        </div>
-        
-        @if (todos().length === 0) {
-          <div class="text-center text-muted">
-            No todos found for this user.
-          </div>
-        }
-      }
+      <app-todos-list
+        [todos]="todos"
+        [loading]="loading"
+        [displayMode]="signal('list')"
+        [showStats]="signal(false)"
+        [emptyMessage]="signal('No todos found for this user.')"
+        [ariaLabel]="signal('Todo items for ' + user.name)"
+        (todoKeyDown)="onTodoKeyDown($event)">
+      </app-todos-list>
     </div>
     
     <div class="modal-footer">

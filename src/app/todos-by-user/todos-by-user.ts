@@ -3,12 +3,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../services';
+import { TodosListComponent } from '../shared/todos-list/todos-list';
 import type { Todo } from '../services';
 import { Subject, debounceTime, distinctUntilChanged, takeUntil, switchMap, of } from 'rxjs';
 
 @Component({
   selector: 'app-todos-by-user',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TodosListComponent],
   templateUrl: './todos-by-user.html',
   styleUrl: './todos-by-user.scss'
 })
@@ -24,6 +25,9 @@ export class TodosByUserComponent implements OnInit, OnDestroy {
   loading = signal(false);
   error = signal<string | null>(null);
   validationError = signal<string | null>(null);
+  
+  // Helper methods for template
+  protected readonly signal = signal;
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -108,15 +112,4 @@ export class TodosByUserComponent implements OnInit, OnDestroy {
     });
   }
 
-  trackByTodoId(index: number, todo: Todo): number {
-    return todo.id;
-  }
-
-  getCompletedCount(): number {
-    return this.todos().filter(t => t.completed).length;
-  }
-
-  getPendingCount(): number {
-    return this.todos().filter(t => !t.completed).length;
-  }
 }

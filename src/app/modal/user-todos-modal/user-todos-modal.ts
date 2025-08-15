@@ -1,11 +1,12 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnDestroy, inject, signal, effect, ElementRef, ViewChild, AfterViewInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../services';
+import { TodosListComponent } from '../../shared/todos-list/todos-list';
 import type { User, Todo } from '../../services';
 
 @Component({
   selector: 'app-user-todos-modal',
-  imports: [CommonModule],
+  imports: [CommonModule, TodosListComponent],
   templateUrl: './user-todos-modal.html',
   styleUrl: './user-todos-modal.scss'
 })
@@ -22,6 +23,10 @@ export class UserTodosModalComponent implements OnInit, OnDestroy, AfterViewInit
   
   todos = signal<Todo[]>([]);
   loading = signal(true);
+  
+  // Helper methods for template
+  createSignal = signal;
+  protected readonly signal = signal;
   
   constructor() {
     // Reactive focus management using signals
@@ -166,7 +171,8 @@ export class UserTodosModalComponent implements OnInit, OnDestroy, AfterViewInit
     this.close.emit();
   }
 
-  onTodoKeyDown(event: KeyboardEvent, todo: Todo) {
+  onTodoKeyDown(data: {event: KeyboardEvent, todo: Todo}) {
+    const { event, todo } = data;
     // Handle Enter or Space on todo items
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
@@ -189,9 +195,5 @@ export class UserTodosModalComponent implements OnInit, OnDestroy, AfterViewInit
     setTimeout(() => {
       document.body.removeChild(announcement);
     }, 1000);
-  }
-
-  trackByTodoId(index: number, todo: Todo): number {
-    return todo.id;
   }
 }

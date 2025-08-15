@@ -19,9 +19,13 @@ export const requestIdInterceptor: HttpInterceptorFn = (req, next) => {
     }));
   }
   
-  const reqWithHeader = req.clone({
-    headers: req.headers.set('X-Req-Id', requestId.toString())
-  });
+  // Only add custom header to internal APIs (JSONPlaceholder, not external APIs like AlphaVantage)
+  const isInternalApi = req.url.includes('jsonplaceholder.typicode.com');
+  const reqWithHeader = isInternalApi 
+    ? req.clone({
+        headers: req.headers.set('X-Req-Id', requestId.toString())
+      })
+    : req;
 
   return next(reqWithHeader).pipe(
     catchError((error: HttpErrorResponse) => {
