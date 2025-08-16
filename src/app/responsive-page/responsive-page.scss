@@ -222,15 +222,15 @@ $highlight-yellow: #FFF9CC;
       }
       
       .location-arrow .arrow-icon {
-        width: 32px;
-        height: 32px;
+        width: 25px;
+        height: 25px;
         background: $success-green;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
         color: $white;
-        font-size: 3rem;
+        font-size: 2rem;
       }
     }
     
@@ -286,7 +286,9 @@ $highlight-yellow: #FFF9CC;
         .person-icon {
           font-size: 0.8rem;
           margin-left: 4px;
+          display: inline-block;
           color: $success-green;
+          filter: brightness(0) saturate(100%) invert(58%) sepia(96%) saturate(464%) hue-rotate(134deg) brightness(80%) contrast(85%);
         }
       }
     }
