@@ -1,10 +1,6 @@
-// Financial Dashboard Styles
+// Financial Dashboard - Simplified Styles
 
-:host {
-  font-family: 'Arial', 'Helvetica', sans-serif;
-}
-
-// Color Variables
+// Colors
 $primary-teal: #17a2b8;
 $success-green: #20b2aa;
 $warning-orange: #ffc107;
@@ -14,14 +10,43 @@ $medium-gray: #e9ecef;
 $dark-gray: #6c757d;
 $text-gray: #495057;
 $white: #ffffff;
+$highlight-yellow: #FFF9CC;
 
 .financial-dashboard {
   background-color: $light-gray;
   min-height: 100vh;
-  font-family: inherit;
+  font-family: 'Arial', 'Helvetica', sans-serif;
   direction: rtl;
 
-  // Header Progress Stages (Desktop)
+  // Common stage icon styles
+  .stage-icon {
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border: 2px solid;
+    
+    &.stage-completed {
+      background-color: $success-green;
+      border-color: $success-green;
+      color: $white;
+    }
+    
+    &.stage-active {
+      background-color: $primary-teal;
+      border-color: $primary-teal;
+      color: $white;
+    }
+    
+    &.stage-pending {
+      background-color: $white;
+      border-color: $medium-gray;
+      color: $dark-gray;
+    }
+  }
+
+  // Desktop stages header
   .stages-header-desktop {
     background: $white;
     padding: 20px 0;
@@ -37,7 +62,6 @@ $white: #ffffff;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      width: 100%;
       padding: 0 40px;
       
       .stage-item {
@@ -47,11 +71,9 @@ $white: #ffffff;
         position: relative;
         border-right: 1px solid $medium-gray;
         
-        &:last-child {
-          border-right: none;
-        }
+        &:last-child { border-right: none; }
         
-        // Add horizontal line after each item except last
+        // Horizontal divider lines
         &:not(:last-child)::after {
           content: '';
           position: absolute;
@@ -86,13 +108,7 @@ $white: #ffffff;
             .stage-icon {
               width: 40px;
               height: 40px;
-              border-radius: 50%;
-              display: flex;
-              align-items: center;
-              justify-content: center;
               font-size: 1.2rem;
-              font-weight: bold;
-              border: 2px solid;
               
               &.stage-completed {
                 width: 30px;
@@ -101,47 +117,18 @@ $white: #ffffff;
                 border-color: $success-green;
                 color: $success-green;
               }
-              
-              &.stage-active {
-                background-color: $primary-teal;
-                border-color: $primary-teal;
-                color: $white;
-              }
-              
-              &.stage-pending {
-                background-color: $white;
-                border-color: $medium-gray;
-                color: $dark-gray;
-              }
             }
-          }
-        }
-        
-        .stage-connector {
-          position: absolute;
-          top: 50%;
-          left: -25%;
-          right: -25%;
-          height: 1px;
-          background-color: $light-gray;
-          z-index: -1;
-          transform: translateY(-50%);
-          
-          &.completed {
-            background-color: $light-gray;
           }
         }
       }
     }
   }
 
-  // Header Progress Stages (Mobile)
+  // Mobile stages header  
   .stages-header-mobile {
     background: $white;
     padding: 15px 0;
     border: 1px solid $medium-gray;
-    border-left: 3px solid $success-green;
-    border-right: 3px solid $success-green;
     border-bottom: 5px solid $medium-gray;
     border-radius: 4px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
@@ -160,9 +147,7 @@ $white: #ffffff;
         position: relative;
         border-right: 1px solid $medium-gray;
         
-        &:last-child {
-          border-right: none;
-        }
+        &:last-child { border-right: none; }
         
         .stage-content.mobile-layout {
           display: flex;
@@ -173,38 +158,10 @@ $white: #ffffff;
           flex: 1;
           gap: 8px;
           
-          .stage-icon-wrapper {
-            position: relative;
-            
-            .stage-icon {
-              width: 35px;
-              height: 35px;
-              border-radius: 50%;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              font-size: 1rem;
-              font-weight: bold;
-              border: 2px solid;
-              
-              &.stage-completed {
-                background-color: $success-green;
-                border-color: $success-green;
-                color: $white;
-              }
-              
-              &.stage-active {
-                background-color: $primary-teal;
-                border-color: $primary-teal;
-                color: $white;
-              }
-              
-              &.stage-pending {
-                background-color: $white;
-                border-color: $medium-gray;
-                color: $dark-gray;
-              }
-            }
+          .stage-icon-wrapper .stage-icon {
+            width: 35px;
+            height: 35px;
+            font-size: 1rem;
           }
           
           .stage-title {
@@ -215,25 +172,11 @@ $white: #ffffff;
             white-space: nowrap;
           }
         }
-        
-        .stage-connector-mobile {
-          position: absolute;
-          top: 17px;
-          left: -25%;
-          right: -25%;
-          height: 1px;
-          background-color: $light-gray;
-          z-index: -1;
-          
-          &.completed {
-            background-color: $light-gray;
-          }
-        }
       }
     }
   }
 
-  // Section Title Area
+  // Section title
   .section-title-area {
     background-color: $light-gray;
     padding: 20px 0 0 0;
@@ -252,7 +195,6 @@ $white: #ffffff;
         font-weight: bold;
         color: $success-green;
         margin: 0;
-        padding: 0;
       }
       
       .yellow-label {
@@ -271,48 +213,13 @@ $white: #ffffff;
         
         .clock-icon {
           font-size: 0.8rem;
-          color: #20B2AA;
+          color: $success-green;
         }
       }
     }
   }
 
-  // Mobile Tab Navigation
-  .mobile-tab-nav {
-    background: $white;
-    border-bottom: 1px solid $medium-gray;
-    
-    .tab-item {
-      padding: 10px 5px;
-      cursor: pointer;
-      
-      &.active {
-        .tab-icon {
-          color: $primary-teal;
-        }
-        small {
-          color: $primary-teal;
-          font-weight: 600;
-        }
-      }
-      
-      .tab-icon {
-        font-size: 1.1rem;
-        margin-bottom: 4px;
-        color: $dark-gray;
-        display: block;
-      }
-      
-      small {
-        display: block;
-        font-size: 0.7rem;
-        color: $dark-gray;
-        line-height: 1.2;
-      }
-    }
-  }
-
-  // Responsive Balance Card
+  // Main balance card
   .balance-card {
     border-radius: 8px;
     margin: 40px;
@@ -328,6 +235,7 @@ $white: #ffffff;
       position: relative;
     }
     
+    // Top sections (journey info)
     .balance-top-section {
       background: $white;
       color: $text-gray;
@@ -337,7 +245,7 @@ $white: #ffffff;
       align-items: flex-start;
       position: relative;
       
-      // Add green line between balance-top-sections
+      // Green divider between sections
       &:first-child::before {
         content: '';
         position: absolute;
@@ -349,6 +257,7 @@ $white: #ffffff;
         z-index: 10;
       }
       
+      // Vertical divider
       &::after {
         content: '';
         position: absolute;
@@ -361,138 +270,135 @@ $white: #ffffff;
         transform: translateX(50%);
       }
       
-      .balance-left {
+      .balance-left, .balance-right {
         flex: 1;
+      }
+      
+      .balance-left {
         padding-right: 20px;
+      }
+      
+      .balance-right {
+        padding-left: 20px;
+      }
+    }
+    
+    // Location info styles
+    .location-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      
+      .location-section {
+        flex: 1;
         
-        .location-info {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          gap: 15px;
+        &:last-child { text-align: end; }
+        
+        .location-header {
+          font-size: 0.9rem;
+          font-weight: bold;
+          color: $dark-gray;
+          margin-bottom: 8px;
+        }
+        
+        .location-city {
+          font-size: 1.1rem;
+          font-weight: bold;
+          color: $success-green;
+          margin-bottom: 4px;
+        }
+        
+        .location-station {
+          font-size: 0.85rem;
+          color: $dark-gray;
+          font-weight: bold;
+          line-height: 1.2;
+        }
+      }
+      
+      .location-arrow .arrow-icon {
+        width: 32px;
+        height: 32px;
+        background-color: $success-green;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $white;
+        font-size: 3rem;
+      }
+    }
+    
+    // Travel info styles
+    .travel-info {
+      .travel-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+        
+        .travel-label {
+          font-size: 0.9rem;
+          font-weight: bold;
+          color: $dark-gray;
           
-          .location-section {
-            flex: 1;
-            
-            &:last-child {
-              text-align: end;
-            }
-            
-            .location-header {
-              font-size: 0.9rem;
-              font-weight: bold;
-              color: $dark-gray;
-              margin-bottom: 8px;
-            }
-            
-            .location-city {
-              font-size: 1.1rem;
-              font-weight: bold;
-              color: #20B2AA;
-              margin-bottom: 4px;
-            }
-            
-            .location-station {
-              font-size: 0.85rem;
-              color: $dark-gray;
-              font-weight: bold;
-              line-height: 1.2;
-            }
+          .trip-type {
+            color: $success-green;
+            font-size: 1.5rem;
+            font-weight: bold;
           }
           
-          .location-arrow {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            
-            .arrow-icon {
-              width: 32px;
-              height: 32px;
-              background-color: $success-green;
-              border-radius: 50%;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              color: $white;
-              font-size: 3rem;
-            }
+          .route-number {
+            background-color: $success-green;
+            color: $white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+          }
+        }
+        
+        .travel-time {
+          font-size: 0.9rem;
+          color: $success-green;
+          font-weight: bold;
+          
+          .time-highlight {
+            background-color: $highlight-yellow;
+            color: $success-green;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+          }
+        }
+        
+        .travel-seats {
+          font-size: 0.9rem;
+          color: $text-gray;
+          font-weight: bold;
+          background-color: #F2F2F2;
+          padding: 4px 8px;
+          border-radius: 4px;
+          
+          .person-icon {
+            font-size: 0.8rem;
+            margin-left: 4px;
+            display: inline-block;
+            color: $success-green;
+            filter: brightness(0) saturate(100%) invert(58%) sepia(96%) saturate(464%) hue-rotate(134deg) brightness(80%) contrast(85%);
           }
         }
       }
       
-      .balance-right {
-        flex: 1;
-        padding-left: 20px;
-        
-        .travel-info {
-          .travel-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-            
-            .travel-label {
-              font-size: 0.9rem;
-              font-weight: bold;
-              color: $dark-gray;
-              
-              .trip-type {
-                color: #20B2AA;
-                font-size: 1.5rem;
-                font-weight: bold;
-              }
-              
-              .route-number {
-                background-color: #20B2AA;
-                color: $white;
-                padding: 2px 6px;
-                border-radius: 4px;
-                font-weight: bold;
-              }
-            }
-            
-            .travel-time {
-              font-size: 0.9rem;
-              color: #20B2AA;
-              font-weight: bold;
-              
-              .time-highlight {
-                background-color: #FFF9CC;
-                color: #20B2AA;
-                padding: 2px 6px;
-                border-radius: 4px;
-                font-weight: bold;
-              }
-            }
-            
-            .travel-seats {
-              font-size: 0.9rem;
-              color: $text-gray;
-              font-weight: bold;
-              background-color: #F2F2F2;
-              padding: 4px 8px;
-              border-radius: 4px;
-              
-              .person-icon {
-                font-size: 0.8rem;
-                margin-left: 4px;
-                display: inline-block;
-                color: #20B2AA;
-                filter: brightness(0) saturate(100%) invert(58%) sepia(96%) saturate(464%) hue-rotate(134deg) brightness(80%) contrast(85%);
-              }
-            }
-          }
-          
-          .travel-divider {
-            border: none;
-            height: 1px;
-            background-color: $dark-gray;
-            margin: 12px 0;
-          }
-        }
+      .travel-divider {
+        border: none;
+        height: 1px;
+        background-color: $dark-gray;
+        margin: 12px 0;
       }
     }
     
+    // Bottom section (passenger & payment info)
     .balance-bottom-section {
       background: $success-green;
       color: $white;
@@ -502,10 +408,10 @@ $white: #ffffff;
       align-items: center;
       position: relative;
       
-      &::after {
+      // Vertical dividers
+      &::after, &::before {
         content: '';
         position: absolute;
-        right: 50%;
         top: 25px;
         bottom: 25px;
         width: 1px;
@@ -514,17 +420,8 @@ $white: #ffffff;
         transform: translateX(50%);
       }
       
-      &::before {
-        content: '';
-        position: absolute;
-        right: 75%;
-        top: 25px;
-        bottom: 25px;
-        width: 1px;
-        background: $white;
-        z-index: 1;
-        transform: translateX(50%);
-      }
+      &::after { right: 50%; }
+      &::before { right: 75%; }
       
       .passenger-info {
         flex: 1;
@@ -536,11 +433,9 @@ $white: #ffffff;
           align-items: flex-end;
           margin-bottom: 6px;
           
-          &:last-child {
-            margin-bottom: 0;
-          }
+          &:last-child { margin-bottom: 0; }
           
-          .passenger-type {
+          .passenger-type, .passenger-price {
             font-size: 0.9rem;
             font-weight: bold;
             color: $white;
@@ -554,13 +449,6 @@ $white: #ffffff;
             opacity: 0.5;
             margin: 0 8px 8px 8px;
             align-self: flex-end;
-          }
-          
-          .passenger-price {
-            font-size: 0.9rem;
-            font-weight: bold;
-            color: $white;
-            align-self: flex-start;
           }
         }
       }
@@ -585,212 +473,63 @@ $white: #ffffff;
           transform: translateX(-50%);
         }
         
-        .passengers-total {
+        .passengers-total, .payment-total {
           flex: 1;
-          text-align: start;
           display: flex;
           align-items: center;
-          justify-content: flex-start;
           
-          .passengers-text {
+          .passengers-text, .payment-text {
             font-size: 0.9rem;
             font-weight: bold;
             color: $white;
           }
         }
         
-        .payment-total {
-          flex: 1;
-          text-align: center;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          
-          .payment-text {
-            font-size: 0.9rem;
-            font-weight: bold;
-            color: $white;
-            
-            .payment-amount-large {
-              font-size: 2rem;
-              font-weight: bold;
-            }
-          }
-        }
-      }
-    }
-  }
-
-  // Transactions List (Mobile Only)
-  .transactions-list {
-    margin-bottom: 16px;
-    display: none; // Hidden by default on desktop
-    
-    .transaction-item {
-      background: $white;
-      margin-bottom: 8px;
-      border-radius: 8px;
-      padding: 14px 16px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      
-      .transaction-left {
-        display: flex;
-        align-items: center;
-        flex: 1;
+        .passengers-total { justify-content: flex-start; }
+        .payment-total { justify-content: center; }
         
-        .transaction-icon {
-          margin-left: 12px;
-          
-          .status-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            
-            &.status-completed {
-              background-color: $success-green;
-            }
-            
-            &.status-pending {
-              background-color: $warning-orange;
-            }
-            
-            &.status-failed {
-              background-color: $danger-red;
-            }
-          }
-        }
-        
-        .transaction-info {
-          .transaction-date {
-            font-size: 0.75rem;
-            color: $dark-gray;
-            margin-bottom: 2px;
-            font-weight: bold;
-          }
-          
-          .transaction-desc {
-            font-size: 0.9rem;
-            font-weight: bold;
-            color: $text-gray;
-            margin-bottom: 2px;
-          }
-          
-          .transaction-reference {
-            font-size: 0.75rem;
-            color: $dark-gray;
-            font-weight: bold;
-          }
-        }
-      }
-      
-      .transaction-right {
-        text-align: left;
-        
-        .transaction-amount {
+        .payment-amount-large {
+          font-size: 2rem;
           font-weight: bold;
-          font-size: 1rem;
-          margin-bottom: 4px;
-          
-          &.positive {
-            color: $success-green;
-          }
-          
-          &.negative {
-            color: $text-gray;
-          }
-        }
-        
-        .transaction-status {
-          .status-badge {
-            background-color: $success-green;
-            color: $white;
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-size: 0.7rem;
-            font-weight: bold;
-            
-            &.status-completed {
-              background-color: $success-green;
-            }
-            
-            &.status-pending {
-              background-color: $warning-orange;
-            }
-            
-            &.status-failed {
-              background-color: $danger-red;
-            }
-          }
         }
       }
     }
   }
 
-
-  // Status Classes
-  .status-completed {
-    background-color: $success-green !important;
-  }
-  
-  .status-pending {
-    background-color: $warning-orange !important;
-  }
-  
-  .status-failed {
-    background-color: $danger-red !important;
-  }
+  // Status classes
+  .status-completed { background-color: $success-green !important; }
+  .status-pending { background-color: $warning-orange !important; }
+  .status-failed { background-color: $danger-red !important; }
 }
 
-// Responsive Breakpoints
+// Mobile responsive adjustments
 @media (max-width: 767.98px) {
   .financial-dashboard {
-    .stages-header {
-      display: none !important;
-    }
+    .stages-header { display: none !important; }
     
-    // Show transactions list on mobile
-    .transactions-list {
-      display: block;
-    }
-    
-    // Mobile stage icon sizes and borders
+    // Remove borders on mobile stages
     .stages-header-mobile {
       border-left: none !important;
       border-right: none !important;
       
-      .stage-content.mobile-layout {
-        .stage-icon-wrapper {
-          .stage-icon {
-            &.stage-completed {
-              width: 25px !important;
-              height: 25px !important;
-            }
-            
-            &.stage-active {
-              width: 25px !important;
-              height: 25px !important;
-            }
-          }
+      .stage-icon {
+        &.stage-completed, &.stage-active {
+          width: 25px !important;
+          height: 25px !important;
         }
       }
     }
     
-    // Adapt balance card for mobile
+    // Mobile balance card adjustments
     .balance-card {
       margin: 0;
       
       .balance-top-section {
         flex-direction: column;
         
-        &::after {
-          display: none; // Remove vertical divider on mobile
-        }
+        &::after { display: none; } // Remove vertical divider
         
-        .balance-left,
-        .balance-right {
+        .balance-left, .balance-right {
           padding: 0;
           flex: none;
           width: 100%;
@@ -802,32 +541,19 @@ $white: #ffffff;
           padding-bottom: 0;
         }
         
-        .balance-left {
-          .location-info {
-            .location-section {
-              .location-station {
-                white-space: nowrap;
-              }
-            }
-            
-            .location-arrow {
-              .arrow-icon {
-                width: 20px;
-                height: 20px;
-                font-size: 2rem;
-              }
-            }
-          }
+        .location-station { white-space: nowrap; }
+        
+        .arrow-icon {
+          width: 20px !important;
+          height: 20px !important;
+          font-size: 2rem !important;
         }
       }
       
       .balance-bottom-section {
         flex-direction: column;
         
-        &::after,
-        &::before {
-          display: none; // Remove vertical dividers on mobile
-        }
+        &::after, &::before { display: none; } // Remove vertical dividers
         
         .passenger-info {
           padding: 0;
@@ -841,75 +567,28 @@ $white: #ffffff;
           border-top: 1px solid $white;
           padding-top: 0;
           
-          &::after {
-            display: none; // Remove vertical divider on mobile
-          }
+          &::after { display: none; } // Remove vertical divider
           
-          .payment-total {
-            .payment-label {
-              display: none; // Hide payment label on mobile
-            }
-            
-            .payment-amount-large {
-              font-size: 1.5rem;
-            }
-          }
+          .payment-label { display: none; } // Hide label on mobile
+          .payment-amount-large { font-size: 1.5rem; }
         }
       }
     }
   }
 }
 
-@media (min-width: 768px) and (max-width: 991.98px) {
-  .financial-dashboard {
-    .stages-header {
-      .stages-container {
-        .stage-item {
-          .stage-content {
-            .stage-title {
-              font-size: 0.75rem;
-            }
-            
-            .stage-icon-wrapper {
-              .stage-icon {
-                width: 35px;
-                height: 35px;
-                font-size: 1rem;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
+// RTL adjustments
+.balance-details .detail-row .detail-label {
+  margin-right: 16px;
+  margin-left: 0;
 }
 
-@media (min-width: 992px) {
-  .financial-dashboard {
-    // Desktop specific styles can go here if needed
-  }
+.transaction-left .transaction-icon {
+  margin-right: 12px;
+  margin-left: 0;
 }
 
-
-// RTL Support adjustments
-.balance-details {
-  .detail-row {
-    .detail-label {
-      margin-right: 16px;
-      margin-left: 0;
-    }
-  }
-}
-
-.transaction-left {
-  .transaction-icon {
-    margin-right: 12px;
-    margin-left: 0;
-  }
-}
-
-
-// Accessibility improvements
+// Accessibility
 @media (prefers-reduced-motion: reduce) {
   .balance-actions button,
   .mobile-transaction-item {
@@ -917,20 +596,9 @@ $white: #ffffff;
   }
 }
 
-// High contrast mode
 @media (prefers-contrast: high) {
   .financial-dashboard {
-    .desktop-balance-card,
-    .mobile-summary {
-      border: 2px solid #000;
-    }
-    
-    .mobile-transaction-item {
-      border: 1px solid #000;
-    }
-    
-    .status-badge {
-      border: 1px solid #000;
-    }
+    .balance-card { border: 2px solid #000; }
+    .status-badge { border: 1px solid #000; }
   }
 }
