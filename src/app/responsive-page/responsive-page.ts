@@ -48,33 +48,6 @@ export class ResponsivePageComponent {
       amount: 150.00,
       status: 'completed',
       type: 'credit'
-    },
-    {
-      id: '2',
-      date: '17/08',
-      description: 'העברה בנקאית',
-      reference: 'משכנתא 1',
-      amount: -75.00,
-      status: 'pending',
-      type: 'debit'
-    },
-    {
-      id: '3',
-      date: '26/05/2022',
-      description: 'תשלום',
-      reference: 'משכנתא 1',
-      amount: 100.00,
-      status: 'completed',
-      type: 'credit'
-    },
-    {
-      id: '4',
-      date: '17/05',
-      description: 'הלוואה',
-      reference: 'משכנתא 1',
-      amount: -120.00,
-      status: 'completed',
-      type: 'debit'
     }
   ]);
 

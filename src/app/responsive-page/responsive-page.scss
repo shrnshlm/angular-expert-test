@@ -45,6 +45,23 @@ $white: #ffffff;
         align-items: center;
         flex: 1;
         position: relative;
+        border-right: 1px solid $medium-gray;
+        
+        &:last-child {
+          border-right: none;
+        }
+        
+        // Add horizontal line after each item except last
+        &:not(:last-child)::after {
+          content: '';
+          position: absolute;
+          bottom: -10px;
+          left: 50%;
+          width: 50px;
+          height: 1px;
+          background-color: $medium-gray;
+          transform: translateX(-50%);
+        }
         
         .stage-content.desktop-layout {
           display: flex;
@@ -78,6 +95,8 @@ $white: #ffffff;
               border: 2px solid;
               
               &.stage-completed {
+                width: 30px;
+                height: 30px;
                 background-color: $white;
                 border-color: $success-green;
                 color: $success-green;
@@ -139,6 +158,11 @@ $white: #ffffff;
         align-items: center;
         flex: 1;
         position: relative;
+        border-right: 1px solid $medium-gray;
+        
+        &:last-child {
+          border-right: none;
+        }
         
         .stage-content.mobile-layout {
           display: flex;
@@ -212,7 +236,7 @@ $white: #ffffff;
   // Section Title Area
   .section-title-area {
     background-color: $light-gray;
-    padding: 30px 0 10px 0;
+    padding: 20px 0 0 0;
     
     .title-row {
       display: flex;
@@ -224,7 +248,7 @@ $white: #ffffff;
       position: relative;
       
       .section-title {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         font-weight: bold;
         color: $success-green;
         margin: 0;
@@ -247,6 +271,7 @@ $white: #ffffff;
         
         .clock-icon {
           font-size: 0.8rem;
+          color: #20B2AA;
         }
       }
     }
@@ -287,8 +312,8 @@ $white: #ffffff;
     }
   }
 
-  // Desktop Balance Card
-  .desktop-balance-card {
+  // Responsive Balance Card
+  .balance-card {
     border-radius: 8px;
     margin: 40px;
     margin-top: 0;
@@ -301,18 +326,6 @@ $white: #ffffff;
       display: flex;
       flex-direction: column;
       position: relative;
-      
-      &::before {
-        content: '';
-        position: absolute;
-        left: 50%;
-        top: 20px;
-        bottom: 20px;
-        width: 2px;
-        background: linear-gradient(to bottom, $success-green 50%, $white 50%);
-        z-index: 1;
-        transform: translateX(-50%);
-      }
     }
     
     .balance-top-section {
@@ -321,49 +334,160 @@ $white: #ffffff;
       padding: 20px 24px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-start;
       position: relative;
       
-      .balance-amount {
-        font-size: 2.5rem;
-        font-weight: bold;
-        margin-bottom: 4px;
-        line-height: 1;
-        color: $text-gray;
+      // Add green line between balance-top-sections
+      &:first-child::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 20px;
+        right: 20px;
+        height: 2px;
+        background-color: $success-green;
+        z-index: 10;
       }
       
-      .balance-label {
-        font-size: 0.9rem;
-        margin-bottom: 2px;
-        color: $text-gray;
-        font-weight: bold;
+      &::after {
+        content: '';
+        position: absolute;
+        right: 50%;
+        top: 10px;
+        bottom: 10px;
+        width: 2px;
+        background: $success-green;
+        z-index: 1;
+        transform: translateX(50%);
       }
       
-      .balance-sublabel {
-        font-size: 0.8rem;
-        color: $dark-gray;
-        font-weight: bold;
-      }
-      
-      .balance-details {
-        .detail-row {
+      .balance-left {
+        flex: 1;
+        padding-right: 20px;
+        
+        .location-info {
           display: flex;
           justify-content: space-between;
-          margin-bottom: 8px;
-          font-size: 0.85rem;
+          align-items: center;
+          gap: 15px;
           
-          .detail-label {
-            font-weight: bold;
-            margin-left: 16px;
+          .location-section {
+            flex: 1;
             
-            &:contains('+') {
-              color: $success-green;
+            &:last-child {
+              text-align: end;
+            }
+            
+            .location-header {
+              font-size: 0.9rem;
+              font-weight: bold;
+              color: $dark-gray;
+              margin-bottom: 8px;
+            }
+            
+            .location-city {
+              font-size: 1.1rem;
+              font-weight: bold;
+              color: #20B2AA;
+              margin-bottom: 4px;
+            }
+            
+            .location-station {
+              font-size: 0.85rem;
+              color: $dark-gray;
+              font-weight: bold;
+              line-height: 1.2;
             }
           }
           
-          .detail-value {
-            color: $text-gray;
-            font-weight: bold;
+          .location-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            .arrow-icon {
+              width: 32px;
+              height: 32px;
+              background-color: $success-green;
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: $white;
+              font-size: 3rem;
+            }
+          }
+        }
+      }
+      
+      .balance-right {
+        flex: 1;
+        padding-left: 20px;
+        
+        .travel-info {
+          .travel-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            
+            .travel-label {
+              font-size: 0.9rem;
+              font-weight: bold;
+              color: $dark-gray;
+              
+              .trip-type {
+                color: #20B2AA;
+                font-size: 1.5rem;
+                font-weight: bold;
+              }
+              
+              .route-number {
+                background-color: #20B2AA;
+                color: $white;
+                padding: 2px 6px;
+                border-radius: 4px;
+                font-weight: bold;
+              }
+            }
+            
+            .travel-time {
+              font-size: 0.9rem;
+              color: #20B2AA;
+              font-weight: bold;
+              
+              .time-highlight {
+                background-color: #FFF9CC;
+                color: #20B2AA;
+                padding: 2px 6px;
+                border-radius: 4px;
+                font-weight: bold;
+              }
+            }
+            
+            .travel-seats {
+              font-size: 0.9rem;
+              color: $text-gray;
+              font-weight: bold;
+              background-color: #F2F2F2;
+              padding: 4px 8px;
+              border-radius: 4px;
+              
+              .person-icon {
+                font-size: 0.8rem;
+                margin-left: 4px;
+                display: inline-block;
+                color: #20B2AA;
+                filter: brightness(0) saturate(100%) invert(58%) sepia(96%) saturate(464%) hue-rotate(134deg) brightness(80%) contrast(85%);
+              }
+            }
+          }
+          
+          .travel-divider {
+            border: none;
+            height: 1px;
+            background-color: $dark-gray;
+            margin: 12px 0;
           }
         }
       }
@@ -372,31 +496,137 @@ $white: #ffffff;
     .balance-bottom-section {
       background: $success-green;
       color: $white;
-      padding: 16px 24px;
+      padding: 25px 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       position: relative;
       
-      .total-amount {
-        font-size: 1.75rem;
-        font-weight: bold;
-        line-height: 1;
+      &::after {
+        content: '';
+        position: absolute;
+        right: 50%;
+        top: 25px;
+        bottom: 25px;
+        width: 1px;
+        background: $white;
+        z-index: 1;
+        transform: translateX(50%);
       }
       
-      .total-label {
-        font-size: 0.9rem;
-        opacity: 0.95;
-        font-weight: bold;
+      &::before {
+        content: '';
+        position: absolute;
+        right: 75%;
+        top: 25px;
+        bottom: 25px;
+        width: 1px;
+        background: $white;
+        z-index: 1;
+        transform: translateX(50%);
+      }
+      
+      .passenger-info {
+        flex: 1;
+        padding-left: 20px;
+        
+        .passenger-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-end;
+          margin-bottom: 6px;
+          
+          &:last-child {
+            margin-bottom: 0;
+          }
+          
+          .passenger-type {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: $white;
+            align-self: flex-start;
+          }
+          
+          .passenger-divider {
+            flex: 1;
+            height: 0.5px;
+            background: $white;
+            opacity: 0.5;
+            margin: 0 8px 8px 8px;
+            align-self: flex-end;
+          }
+          
+          .passenger-price {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: $white;
+            align-self: flex-start;
+          }
+        }
+      }
+      
+      .total-info {
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        margin-top: 15px;
+        
+        &::after {
+          content: '';
+          position: absolute;
+          left: 50%;
+          top: 25px;
+          bottom: 25px;
+          width: 2px;
+          background: $white;
+          z-index: 10;
+          transform: translateX(-50%);
+        }
+        
+        .passengers-total {
+          flex: 1;
+          text-align: start;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          
+          .passengers-text {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: $white;
+          }
+        }
+        
+        .payment-total {
+          flex: 1;
+          text-align: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          
+          .payment-text {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: $white;
+            
+            .payment-amount-large {
+              font-size: 2rem;
+              font-weight: bold;
+            }
+          }
+        }
       }
     }
   }
 
-  // Mobile Transactions
-  .mobile-transactions {
+  // Transactions List (Mobile Only)
+  .transactions-list {
     margin-bottom: 16px;
+    display: none; // Hidden by default on desktop
     
-    .mobile-transaction-item {
+    .transaction-item {
       background: $white;
       margin-bottom: 8px;
       border-radius: 8px;
@@ -438,6 +668,7 @@ $white: #ffffff;
             font-size: 0.75rem;
             color: $dark-gray;
             margin-bottom: 2px;
+            font-weight: bold;
           }
           
           .transaction-desc {
@@ -472,52 +703,32 @@ $white: #ffffff;
           }
         }
         
-        .status-badge {
-          background-color: $success-green;
-          color: $white;
-          padding: 2px 8px;
-          border-radius: 12px;
-          font-size: 0.7rem;
-          font-weight: bold;
+        .transaction-status {
+          .status-badge {
+            background-color: $success-green;
+            color: $white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            
+            &.status-completed {
+              background-color: $success-green;
+            }
+            
+            &.status-pending {
+              background-color: $warning-orange;
+            }
+            
+            &.status-failed {
+              background-color: $danger-red;
+            }
+          }
         }
       }
     }
   }
 
-  // Mobile Summary Card
-  .mobile-summary {
-    background: $primary-teal;
-    border-radius: 8px;
-    color: $white;
-    box-shadow: 0 2px 8px rgba(23, 162, 184, 0.3);
-    
-    .summary-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 16px 20px;
-      
-      .summary-left {
-        .summary-text {
-          font-size: 0.9rem;
-          margin-bottom: 2px;
-          opacity: 0.95;
-        }
-        
-        .summary-subtext {
-          font-size: 0.8rem;
-          opacity: 0.8;
-        }
-      }
-      
-      .summary-right {
-        .summary-amount {
-          font-size: 1.75rem;
-          font-weight: bold;
-        }
-      }
-    }
-  }
 
   // Status Classes
   .status-completed {
@@ -540,19 +751,108 @@ $white: #ffffff;
       display: none !important;
     }
     
-    .desktop-balance-card {
-      .balance-left {
-        .balance-amount {
-          font-size: 2rem;
+    // Show transactions list on mobile
+    .transactions-list {
+      display: block;
+    }
+    
+    // Mobile stage icon sizes and borders
+    .stages-header-mobile {
+      border-left: none !important;
+      border-right: none !important;
+      
+      .stage-content.mobile-layout {
+        .stage-icon-wrapper {
+          .stage-icon {
+            &.stage-completed {
+              width: 25px !important;
+              height: 25px !important;
+            }
+            
+            &.stage-active {
+              width: 25px !important;
+              height: 25px !important;
+            }
+          }
         }
       }
     }
     
-    .mobile-summary {
-      .summary-content {
-        .summary-right {
-          .summary-amount {
-            font-size: 1.5rem;
+    // Adapt balance card for mobile
+    .balance-card {
+      margin: 0;
+      
+      .balance-top-section {
+        flex-direction: column;
+        
+        &::after {
+          display: none; // Remove vertical divider on mobile
+        }
+        
+        .balance-left,
+        .balance-right {
+          padding: 0;
+          flex: none;
+          width: 100%;
+        }
+        
+        .balance-right {
+          margin-bottom: 0;
+          border-bottom: 1px solid $medium-gray;
+          padding-bottom: 0;
+        }
+        
+        .balance-left {
+          .location-info {
+            .location-section {
+              .location-station {
+                white-space: nowrap;
+              }
+            }
+            
+            .location-arrow {
+              .arrow-icon {
+                width: 20px;
+                height: 20px;
+                font-size: 2rem;
+              }
+            }
+          }
+        }
+      }
+      
+      .balance-bottom-section {
+        flex-direction: column;
+        
+        &::after,
+        &::before {
+          display: none; // Remove vertical dividers on mobile
+        }
+        
+        .passenger-info {
+          padding: 0;
+          margin-bottom: 20px;
+          width: 100%;
+        }
+        
+        .total-info {
+          margin-top: 0;
+          width: 100%;
+          border-top: 1px solid $white;
+          padding-top: 0;
+          
+          &::after {
+            display: none; // Remove vertical divider on mobile
+          }
+          
+          .payment-total {
+            .payment-label {
+              display: none; // Hide payment label on mobile
+            }
+            
+            .payment-amount-large {
+              font-size: 1.5rem;
+            }
           }
         }
       }
@@ -581,31 +881,15 @@ $white: #ffffff;
         }
       }
     }
-    
-    .desktop-balance-card {
-      .balance-content {
-        flex-direction: column;
-      }
-      
-      .balance-left,
-      .balance-right {
-        border-radius: 8px;
-      }
-    }
   }
 }
 
 @media (min-width: 992px) {
   .financial-dashboard {
-    .desktop-balance-card {
-      .balance-left {
-        .balance-amount {
-          font-size: 3rem;
-        }
-      }
-    }
+    // Desktop specific styles can go here if needed
   }
 }
+
 
 // RTL Support adjustments
 .balance-details {
@@ -623,6 +907,7 @@ $white: #ffffff;
     margin-left: 0;
   }
 }
+
 
 // Accessibility improvements
 @media (prefers-reduced-motion: reduce) {

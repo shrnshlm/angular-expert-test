@@ -47,37 +47,6 @@
     </div>
   </div>
 
-  <!-- Mobile Tab Navigation (Mobile Only) -->
-  <div class="mobile-tab-nav d-md-none">
-    <div class="container-fluid px-2 py-2">
-      <div class="row no-gutters">
-        <div class="col-3 text-center">
-          <div class="tab-item">
-            <div class="tab-icon">📊</div>
-            <small>סטטיסטיקות</small>
-          </div>
-        </div>
-        <div class="col-3 text-center">
-          <div class="tab-item">
-            <div class="tab-icon">📈</div>
-            <small>גרף טרנד</small>
-          </div>
-        </div>
-        <div class="col-3 text-center">
-          <div class="tab-item">
-            <div class="tab-icon">💳</div>
-            <small>כרטיסים</small>
-          </div>
-        </div>
-        <div class="col-3 text-center">
-          <div class="tab-item active">
-            <div class="tab-icon">📋</div>
-            <small>מקדמה 2</small>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Section Title -->
   <div class="section-title-area">
@@ -85,7 +54,7 @@
       <div class="title-row">
         <h2 class="section-title">סיכום ותשלום</h2>
         <span class="yellow-label">
-          <span class="clock-icon">🕘</span>
+          <span class="clock-icon">⏱</span>
           09:15
         </span>
       </div>
@@ -95,76 +64,108 @@
   <!-- Main Content Container -->
   <div class="container-fluid p-3">
     
-    <!-- Desktop Layout -->
-    <div class="desktop-layout d-none d-md-block">
-      <!-- Single Horizontal Balance Card -->
-      <div class="desktop-balance-card">
-        <div class="balance-content">
-          <div class="balance-top-section">
-            <div class="balance-amount">{{ formatAmount(currentBalance()) }}</div>
-            <div class="balance-label">יתרה נוכחית</div>
-            <div class="balance-sublabel">למשיכה מזומן</div>
-            <div class="balance-details">
-              <div class="detail-row">
-                <span class="detail-label">+ 140.00</span>
-                <span class="detail-value">זכאות יתר 1</span>
+    <!-- Responsive Balance Card -->
+    <div class="balance-card">
+      <div class="balance-content">
+        <div class="balance-top-section">
+          <div class="balance-right">
+            <div class="travel-info">
+              <div class="travel-row">
+                <span class="travel-label">נסיעה: <span class="trip-type">הלוך</span></span>
+                <span class="travel-time">25/05/2022 <span class="time-highlight">10:30</span></span>
               </div>
-              <div class="detail-row">
-                <span class="detail-label">- 96.00</span>
-                <span class="detail-value">חובה יתר 2</span>
+              <hr class="travel-divider">
+              <div class="travel-row">
+                <span class="travel-label">
+                  קו: <span class="route-number">394</span>
+                </span>
+                <span class="travel-seats">
+                  <span class="person-icon">👤</span>
+                  3 מקומות
+                </span>
               </div>
             </div>
           </div>
-          <div class="balance-bottom-section">
-            <div class="total-amount">{{ formatAmount(totalBalance()) }}</div>
-            <div class="total-label">סך הכל למשיכות</div>
+          <div class="balance-left">
+            <div class="location-info">
+              <div class="location-section">
+                <div class="location-header">מוצא</div>
+                <div class="location-city">תל אביב</div>
+                <div class="location-station">תחנה מרכזית תל אביב</div>
+              </div>
+              <div class="location-arrow">
+                <div class="arrow-icon">￩</div>
+              </div>
+              <div class="location-section">
+                <div class="location-header">יעד</div>
+                <div class="location-city">אילת</div>
+                <div class="location-station">אילת איזור תעשיה</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="balance-top-section">
+          <div class="balance-right">
+            <div class="travel-info">
+              <div class="travel-row">
+                <span class="travel-label">נסיעה: <span class="trip-type">חזור</span></span>
+                <span class="travel-time">25/05/2022 <span class="time-highlight">10:30</span></span>
+              </div>
+              <hr class="travel-divider">
+              <div class="travel-row">
+                <span class="travel-label">
+                  קו: <span class="route-number">390</span>
+                </span>
+                <span class="travel-seats">
+                  <span class="person-icon">👤</span>
+                  3 מקומות
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="balance-left">
+            <div class="location-info">
+              <div class="location-section">
+                <div class="location-header">מוצא</div>
+                <div class="location-city">אילת</div>
+                <div class="location-station">אילת איזור תעשיה</div>
+              </div>
+              <div class="location-arrow">
+                <div class="arrow-icon">￩</div>
+              </div>
+              <div class="location-section">
+                <div class="location-header">יעד</div>
+                <div class="location-city">תל אביב</div>
+                <div class="location-station">תחנה מרכזית תל אביב</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="balance-bottom-section">
+          <div class="passenger-info">
+            <div class="passenger-row">
+              <span class="passenger-type">2 רגיל</span>
+              <span class="passenger-divider"></span>
+              <span class="passenger-price">136.00 ₪</span>
+            </div>
+            <div class="passenger-row">
+              <span class="passenger-type">2 סטודנט</span>
+              <span class="passenger-divider"></span>
+              <span class="passenger-price">38.00 ₪</span>
+            </div>
+          </div>
+          <div class="total-info">
+            <div class="passengers-total">
+              <span class="passengers-text">סה"כ: 3 נוסעים</span>
+            </div>
+            <div class="payment-total">
+              <span class="payment-text"><span class="payment-label">סה"כ לתשלום: </span><span class="payment-amount-large">174.00 ₪</span></span>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Mobile Layout -->
-    <div class="mobile-layout d-md-none">
-      
-      <!-- Transactions List -->
-      <div class="mobile-transactions">
-        @for (transaction of transactions(); track transaction.id) {
-          <div class="mobile-transaction-item">
-            <div class="transaction-left">
-              <div class="transaction-icon">
-                <div class="status-dot" [class]="getStatusClass(transaction.status)"></div>
-              </div>
-              <div class="transaction-info">
-                <div class="transaction-date">{{ transaction.date }}</div>
-                <div class="transaction-desc">{{ transaction.description }}</div>
-                <div class="transaction-reference">{{ transaction.reference }}</div>
-              </div>
-            </div>
-            <div class="transaction-right">
-              <div class="transaction-amount" [class]="transaction.type === 'credit' ? 'positive' : 'negative'">
-                {{ formatAmount(transaction.amount) }}
-              </div>
-              <div class="transaction-status">
-                <span class="status-badge" [class]="getStatusClass(transaction.status)">ביט</span>
-              </div>
-            </div>
-          </div>
-        }
-      </div>
-
-      <!-- Mobile Summary Card -->
-      <div class="mobile-summary">
-        <div class="summary-content">
-          <div class="summary-left">
-            <div class="summary-text">סך כל</div>
-            <div class="summary-subtext">למשיכות</div>
-          </div>
-          <div class="summary-right">
-            <div class="summary-amount">{{ formatAmount(totalBalance()) }}</div>
-          </div>
-        </div>
-      </div>
-    </div>
 
   </div>
 </div>
