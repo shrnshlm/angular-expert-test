@@ -1,6 +1,6 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { Observable, map, of } from 'rxjs';
 
 export interface User {
   id: number;
@@ -46,10 +46,7 @@ export class UserService {
   
   getUserTodos(userId: number): Observable<Todo[]> {
     if (this.todosCache.has(userId)) {
-      return new Observable(observer => {
-        observer.next(this.todosCache.get(userId)!);
-        observer.complete();
-      });
+      return of(this.todosCache.get(userId)!);
     }
     
     return this.http.get<Todo[]>(`https://jsonplaceholder.typicode.com/todos?userId=${userId}`)

@@ -99,8 +99,10 @@ export class TodosByUserComponent implements OnInit, OnDestroy {
 
   private loadTodos(userId: number) {
     this.loading.set(true);
+    this.error.set(null); // Clear any previous error
     this.userService.getUserTodos(userId).subscribe({
       next: (todos: Todo[]) => {
+        this.error.set(null); // Clear error on success
         this.todos.set(todos);
         this.loading.set(false);
       },

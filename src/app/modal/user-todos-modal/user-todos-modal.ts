@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit, OnDestroy, inject, signal, effect, ElementRef, ViewChild, AfterViewInit, HostListener } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnDestroy, inject, signal, effect, ElementRef, ViewChild, AfterViewInit, HostListener, ChangeDetectionStrategy, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../services';
 import { TodosListComponent } from '../../shared/todos-list/todos-list';
@@ -12,6 +12,7 @@ import type { User, Todo } from '../../services';
 })
 export class UserTodosModalComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() user!: User;
+  userSignal = signal<User | null>(null);
   @Output() close = new EventEmitter<void>();
   @ViewChild('modalContent') modalContent!: ElementRef;
   @ViewChild('closeButton') closeButton!: ElementRef;
@@ -22,20 +23,51 @@ export class UserTodosModalComponent implements OnInit, OnDestroy, AfterViewInit
   private currentFocusIndex = 0;
   
   todos = signal<Todo[]>([]);
-  loading = signal(true);
+  loading = signal(true); // Start with loading true
+  error = signal<string | null>(null);
+  initialized = signal(false);
   
   // Helper methods for template
   createSignal = signal;
   protected readonly signal = signal;
   
   constructor() {
+    // Reactive data loading effect
+    effect(() => {
+      const user = this.userSignal();
+      const initialized = this.initialized();
+      
+      // Only run when user is available and component is initialized
+      if (user && initialized) {
+        this.loading.set(true);
+        this.todos.set([]);
+        this.error.set(null);
+        
+        // Use setTimeout to ensure loading state renders before data request
+        setTimeout(() => {
+          this.userService.getUserTodos(user.id).subscribe({
+            next: (todos: Todo[]) => {
+              this.error.set(null); // Clear error first
+              this.todos.set(todos);
+              this.loading.set(false);
+            },
+            error: (error) => {
+              this.todos.set([]);
+              this.loading.set(false);
+              this.error.set('Failed to load todos');
+            }
+          });
+        }, 50); // Small delay to ensure loading state is visible
+      }
+    });
+    
     // Reactive focus management using signals
     effect(() => {
       const todosList = this.todos();
-      const isLoading = this.loading();
+      const loading = this.loading();
       
       // Update focusable elements when todos change or loading completes
-      if (!isLoading && this.modalContent?.nativeElement) {
+      if (!loading && this.modalContent?.nativeElement) {
         // Use queueMicrotask to ensure DOM has been updated
         queueMicrotask(() => {
           this.updateFocusableElements();
@@ -51,17 +83,11 @@ export class UserTodosModalComponent implements OnInit, OnDestroy, AfterViewInit
     // Prevent background scrolling
     document.body.style.overflow = 'hidden';
     
-    this.userService.getUserTodos(this.user.id).subscribe({
-      next: (todos: Todo[]) => {
-        this.todos.set(todos);
-        this.loading.set(false);
-        // The effect() will automatically handle focus updates
-      },
-      error: () => {
-        this.loading.set(false);
-        // The effect() will still run and update focus elements
-      }
-    });
+    // Set the user signal to trigger the reactive effect
+    this.userSignal.set(this.user);
+    
+    // Signal that component is initialized - this will trigger the data loading effect
+    this.initialized.set(true);
   }
 
   ngAfterViewInit() {

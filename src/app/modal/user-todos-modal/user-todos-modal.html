@@ -27,6 +27,7 @@
       <app-todos-list
         [todos]="todos"
         [loading]="loading"
+        [error]="error"
         [displayMode]="signal('list')"
         [showStats]="signal(false)"
         [emptyMessage]="signal('No todos found for this user.')"

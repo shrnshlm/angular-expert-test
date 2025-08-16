@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, signal } from '@angular/core';
+import { Component, Input, Output, EventEmitter, signal, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import type { Todo } from '../../services';
 
@@ -12,13 +12,17 @@ export type TodosDisplayMode = 'list' | 'grid';
 })
 export class TodosListComponent {
   @Input() todos = signal<Todo[]>([]);
-  @Input() loading = signal(false);
+  @Input() loading = signal(true); // Start with loading true to prevent flash
   @Input() error = signal<string | null>(null);
   @Input() displayMode = signal<TodosDisplayMode>('list');
   @Input() showStats = signal(true);
   @Input() showTodoId = signal(false);
   @Input() emptyMessage = signal<string>('');
   @Input() ariaLabel = signal<string>('Todo items');
+  
+  constructor() {
+    // Component initialization
+  }
   
   @Output() todoClick = new EventEmitter<Todo>();
   @Output() todoKeyDown = new EventEmitter<{event: KeyboardEvent, todo: Todo}>();
