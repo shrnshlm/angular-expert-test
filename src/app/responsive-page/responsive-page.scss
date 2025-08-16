@@ -46,8 +46,8 @@ $highlight-yellow: #FFF9CC;
     }
   }
 
-  // Desktop stages header
-  .stages-header-desktop {
+  // Responsive stages header
+  .stages-header {
     background: $white;
     padding: 20px 0;
     border: 1px solid $medium-gray;
@@ -73,7 +73,7 @@ $highlight-yellow: #FFF9CC;
         
         &:last-child { border-right: none; }
         
-        // Horizontal divider lines
+        // Horizontal divider lines (desktop only)
         &:not(:last-child)::after {
           content: '';
           position: absolute;
@@ -85,21 +85,13 @@ $highlight-yellow: #FFF9CC;
           transform: translateX(-50%);
         }
         
-        .stage-content.desktop-layout {
+        .stage-content {
           display: flex;
           align-items: center;
           justify-content: center;
           text-align: center;
           flex: 1;
           gap: 12px;
-          
-          .stage-title {
-            font-size: 0.85rem;
-            color: $text-gray;
-            font-weight: bold;
-            order: 2;
-            white-space: nowrap;
-          }
           
           .stage-icon-wrapper {
             position: relative;
@@ -119,56 +111,12 @@ $highlight-yellow: #FFF9CC;
               }
             }
           }
-        }
-      }
-    }
-  }
-
-  // Mobile stages header  
-  .stages-header-mobile {
-    background: $white;
-    padding: 15px 0;
-    border: 1px solid $medium-gray;
-    border-bottom: 5px solid $medium-gray;
-    border-radius: 4px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    margin-bottom: 0;
-    
-    .stages-container-mobile {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      
-      .stage-item-mobile {
-        display: flex;
-        align-items: center;
-        flex: 1;
-        position: relative;
-        border-right: 1px solid $medium-gray;
-        
-        &:last-child { border-right: none; }
-        
-        .stage-content.mobile-layout {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          text-align: center;
-          flex: 1;
-          gap: 8px;
-          
-          .stage-icon-wrapper .stage-icon {
-            width: 35px;
-            height: 35px;
-            font-size: 1rem;
-          }
           
           .stage-title {
-            font-size: 0.7rem;
+            font-size: 0.85rem;
             color: $text-gray;
             font-weight: bold;
-            line-height: 1.2;
+            order: 2;
             white-space: nowrap;
           }
         }
@@ -505,17 +453,47 @@ $highlight-yellow: #FFF9CC;
 // Mobile responsive adjustments
 @media (max-width: 767.98px) {
   .financial-dashboard {
-    .stages-header { display: none !important; }
-    
-    // Remove borders on mobile stages
-    .stages-header-mobile {
+    // Mobile stage header adjustments
+    .stages-header {
+      padding: 15px 0;
       border-left: none !important;
       border-right: none !important;
       
-      .stage-icon {
-        &.stage-completed, &.stage-active {
-          width: 25px !important;
-          height: 25px !important;
+      .stages-container {
+        padding: 0 10px;
+        gap: 10px;
+        
+        .stage-item {
+          // Hide horizontal divider lines on mobile
+          &:not(:last-child)::after {
+            display: none;
+          }
+          
+          .stage-content {
+            flex-direction: column;
+            gap: 8px;
+            
+            .stage-icon-wrapper {
+              order: 1;
+              
+              .stage-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+                
+                &.stage-completed, &.stage-active {
+                  width: 25px !important;
+                  height: 25px !important;
+                }
+              }
+            }
+            
+            .stage-title {
+              order: 2;
+              font-size: 0.7rem;
+              line-height: 1.2;
+            }
+          }
         }
       }
     }

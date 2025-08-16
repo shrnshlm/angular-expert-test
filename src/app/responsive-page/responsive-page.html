@@ -1,45 +1,22 @@
 <!-- Financial Dashboard -->
 <div class="financial-dashboard" dir="rtl">
   
-  <!-- Header Progress Stages (Desktop) -->
-  <div class="stages-header-desktop d-none d-md-block">
+  <!-- Responsive Header Progress Stages -->
+  <div class="stages-header">
     <div class="container-fluid">
       <div class="stages-container">
         @for (stage of stages(); track stage.id; let i = $index) {
           <div class="stage-item">
-            <div class="stage-content desktop-layout">
-              <div class="stage-title">{{ stage.title }}</div>
+            <div class="stage-content">
               <div class="stage-icon-wrapper">
                 <div class="stage-icon" [class]="'stage-' + stage.status">
                   {{ stage.icon }}
                 </div>
               </div>
+              <div class="stage-title">{{ stage.title }}</div>
             </div>
             @if (i < stages().length - 1) {
               <div class="stage-connector" [class]="stage.status === 'completed' ? 'completed' : ''"></div>
-            }
-          </div>
-        }
-      </div>
-    </div>
-  </div>
-
-  <!-- Header Progress Stages (Mobile) -->
-  <div class="stages-header-mobile d-md-none">
-    <div class="container-fluid">
-      <div class="stages-container-mobile">
-        @for (stage of stages(); track stage.id; let i = $index) {
-          <div class="stage-item-mobile">
-            <div class="stage-content mobile-layout">
-              <div class="stage-icon-wrapper">
-                <div class="stage-icon" [class]="'stage-' + stage.status">
-                  {{ stage.icon }}
-                </div>
-              </div>
-              <div class="stage-title">{{ stage.title }}</div>
-            </div>
-            @if (i < stages().length - 1) {
-              <div class="stage-connector-mobile" [class]="stage.status === 'completed' ? 'completed' : ''"></div>
             }
           </div>
         }
