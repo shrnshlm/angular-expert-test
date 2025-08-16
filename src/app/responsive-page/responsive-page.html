@@ -15,10 +15,10 @@
               </div>
               <div class="stage-title">{{ stage.title }}</div>
             </div>
-            @if (i < stages().length - 1) {
-              <div class="stage-connector" [class]="stage.status === 'completed' ? 'completed' : ''"></div>
-            }
           </div>
+          @if (i < stages().length - 1) {
+            <div class="stage-divider"></div>
+          }
         }
       </div>
     </div>
@@ -86,7 +86,7 @@
             <div class="travel-info">
               <div class="travel-row">
                 <span class="travel-label">נסיעה: <span class="trip-type">חזור</span></span>
-                <span class="travel-time">25/05/2022 <span class="time-highlight">10:30</span></span>
+                <span class="travel-time">25/05/2022 <span class="time-highlight">12:00</span></span>
               </div>
               <hr class="travel-divider">
               <div class="travel-row">
@@ -123,20 +123,20 @@
             <div class="passenger-row">
               <span class="passenger-type">2 רגיל</span>
               <span class="passenger-divider"></span>
-              <span class="passenger-price">136.00 ₪</span>
+              <span class="passenger-price">272.00 ₪</span>
             </div>
             <div class="passenger-row">
-              <span class="passenger-type">2 סטודנט</span>
+              <span class="passenger-type">1 סטודנט</span>
               <span class="passenger-divider"></span>
-              <span class="passenger-price">38.00 ₪</span>
+              <span class="passenger-price">76.00 ₪</span>
             </div>
           </div>
           <div class="total-info">
             <div class="passengers-total">
-              <span class="passengers-text">סה"כ: 3 נוסעים</span>
+              <span class="passengers-text"><span class="passengers-label">סה"כ: </span><span class="passengers-count">3 נוסעים</span></span>
             </div>
             <div class="payment-total">
-              <span class="payment-text"><span class="payment-label">סה"כ לתשלום: </span><span class="payment-amount-large">174.00 ₪</span></span>
+              <span class="payment-text"><span class="payment-label">סה"כ לתשלום: </span><span class="payment-amount-large">348.00 ₪</span></span>
             </div>
           </div>
         </div>

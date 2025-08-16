@@ -65,25 +65,6 @@ $highlight-yellow: #FFF9CC;
       padding: 0 40px;
       
       .stage-item {
-        display: flex;
-        align-items: center;
-        flex: 1;
-        position: relative;
-        border-right: 1px solid $medium-gray;
-        
-        &:last-child { border-right: none; }
-        
-        // Horizontal divider lines (desktop only)
-        &:not(:last-child)::after {
-          content: '';
-          position: absolute;
-          bottom: -10px;
-          left: 50%;
-          width: 50px;
-          height: 1px;
-          background-color: $medium-gray;
-          transform: translateX(-50%);
-        }
         
         .stage-content {
           display: flex;
@@ -92,6 +73,7 @@ $highlight-yellow: #FFF9CC;
           text-align: center;
           flex: 1;
           gap: 12px;
+          padding: 0 10px;
           
           .stage-icon-wrapper {
             position: relative;
@@ -100,7 +82,7 @@ $highlight-yellow: #FFF9CC;
             .stage-icon {
               width: 40px;
               height: 40px;
-              font-size: 1.2rem;
+              font-size: 1rem;
               
               &.stage-completed {
                 width: 30px;
@@ -109,17 +91,32 @@ $highlight-yellow: #FFF9CC;
                 border-color: $success-green;
                 color: $success-green;
               }
+              
+              &.stage-active {
+                width: 30px;
+                height: 30px;
+                font-size: 0.8rem;
+              }
             }
           }
           
           .stage-title {
-            font-size: 0.85rem;
+            font-size: 1rem;
             color: $text-gray;
             font-weight: bold;
             order: 2;
             white-space: nowrap;
           }
         }
+      }
+      
+      .stage-divider {
+        width: 100%;
+        height: 1px;
+        background-color: lightgray;
+        margin: 0 auto;
+        top: -10px;
+        position: relative;
       }
     }
   }
@@ -160,7 +157,7 @@ $highlight-yellow: #FFF9CC;
         left: 7px;
         
         .clock-icon {
-          font-size: 0.8rem;
+          font-size: 1rem;
           color: $success-green;
         }
       }
@@ -461,7 +458,7 @@ $highlight-yellow: #FFF9CC;
       
       .stages-container {
         padding: 0 10px;
-        gap: 10px;
+        gap: 0;
         
         .stage-item {
           // Hide horizontal divider lines on mobile
@@ -472,6 +469,8 @@ $highlight-yellow: #FFF9CC;
           .stage-content {
             flex-direction: column;
             gap: 8px;
+            padding: 0;
+            width: 60px;
             
             .stage-icon-wrapper {
               order: 1;
@@ -484,6 +483,10 @@ $highlight-yellow: #FFF9CC;
                 &.stage-completed, &.stage-active {
                   width: 25px !important;
                   height: 25px !important;
+                }
+                
+                &.stage-completed {
+                  font-size: 0.8rem;
                 }
               }
             }
@@ -511,6 +514,10 @@ $highlight-yellow: #FFF9CC;
           padding: 0;
           flex: none;
           width: 100%;
+        }
+        
+        .balance-left {
+          margin-top: 10px;
         }
         
         .balance-right {
@@ -551,6 +558,39 @@ $highlight-yellow: #FFF9CC;
           .payment-amount-large { font-size: 1.5rem; }
         }
       }
+    }
+    
+    // Mobile travel label color adjustment
+    .travel-label {
+      color: #9CA3AF !important;
+    }
+    
+    // Mobile location header color adjustment
+    .location-header {
+      color: #9CA3AF !important;
+      margin-bottom: 0 !important;
+    }
+    
+    // Mobile passenger text font-weight adjustment
+    .passengers-label {
+      font-weight: normal !important;
+    }
+    
+    .passengers-count {
+      font-weight: bold !important;
+    }
+    
+    // Mobile payment total alignment
+    .payment-total {
+      justify-content: end !important;
+    }
+    
+    // Mobile stage divider positioning adjustment
+    .stage-divider {
+      height: 10px;
+      margin-top: -20px;
+      position: relative;
+      z-index: 1;
     }
   }
 }
